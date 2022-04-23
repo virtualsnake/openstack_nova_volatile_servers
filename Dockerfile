@@ -1,8 +1,9 @@
 FROM python:3.10
 
-COPY requirements.txt ./requirements.txt
-COPY app/ ./
+COPY requirements.txt ./
+COPY volatile_api/ ./
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "./main.py"]
+RUN chmod +x ./start.sh
+CMD ["./start.sh"]
