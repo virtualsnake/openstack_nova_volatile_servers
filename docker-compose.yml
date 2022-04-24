@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     command: uwsgi uwsgi.ini
+    env_file: openstack.env
     restart: always
     expose:
       - 8001

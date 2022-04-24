@@ -5,5 +5,4 @@ COPY volatile_api/ ./
 
 RUN pip install -r requirements.txt
 
-RUN chmod +x ./start.sh
-CMD ["./start.sh"]
+CMD ["python", "app.py"]

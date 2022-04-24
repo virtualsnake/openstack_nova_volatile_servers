@@ -1,11 +1,16 @@
 import functools
+import logging
 
 from flask_restful import Resource, reqparse, marshal_with, fields
 from flask_restful import abort
 from openstack.exceptions import HttpException, SDKException
 from werkzeug.exceptions import HTTPException
 
-from volatile_api.openstack_api import client as os_client, ServerTypes, extractServerType
+from volatile_api.utils import initLogger
+from volatile_api.volatile_client import client as os_client, ServerTypes, extractServerType
+
+logger = logging.getLogger(__name__)
+initLogger(logger)
 
 server_types = [e.value for e in ServerTypes]
 
@@ -38,7 +43,11 @@ class Server(Resource):
     @handleExceptions
     @marshal_with(response_server_fields, envelope="servers")
     def get(self, server_id):
-        return os_client.getServer(server_id)
+        server = os_client.getServer(server_id)
+        if server:
+            return [server, ]
+        else:
+            abort(404, message="Server not found")
 
     @handleExceptions
     def delete(self, server_id):
@@ -66,5 +75,6 @@ class ServerList(Resource):
     @marshal_with(response_server_fields, envelope="servers")
     def post(self):
         args = self._post_parser.parse_args()
+        logger.debug(f'POST {args}')
         server = os_client.createServer(name=args['server_name'], server_type=args['server_type'])
-        return server, 201
+        return [server, ], 201

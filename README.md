@@ -1,6 +1,6 @@
 ## Prerequisite:
 - Linux (tested on Ubuntu 18.04.6 LTS)
-- Docker installed
+- Docker and Docker-compose installed
 
 ## How to run api server:
 
