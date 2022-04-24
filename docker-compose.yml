@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: uwsgi uwsgi.ini
+    command: uwsgi volatile_api/uwsgi.ini
     env_file: openstack.env
     restart: always
     expose:
