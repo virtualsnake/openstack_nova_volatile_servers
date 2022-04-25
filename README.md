@@ -35,7 +35,7 @@
     ./run_e2e_tests.sh
     ```
 
-#### Api call examples:
+## Api call examples:
 List servers
 ```bash
 curl http://localhost/servers
