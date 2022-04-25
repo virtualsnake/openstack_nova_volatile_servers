@@ -30,7 +30,7 @@
       ./build_image.sh && ./run_app.sh
       ```
  
-4) *(Optional)* Run tests
+4) *(Optional)* Run tests *(uses 5000 port)* 
     ```bash
     ./run_e2e_tests.sh
     ```
