@@ -10,4 +10,4 @@ api.add_resource(ServerList, '/servers')
 api.add_resource(Server, '/servers/<string:server_id>')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run("0.0.0.0", debug=True)
